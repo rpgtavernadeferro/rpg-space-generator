@@ -31,7 +31,7 @@ fig = go.Figure(data=
     ))
 
 #criação do grafico
-while contador_geral <4:
+while contador_geral <5:
     contador_geral +=1
 
     # criando listas gerais
@@ -49,7 +49,8 @@ while contador_geral <4:
         case 2: qd = rdi(100,200) # estrelas
         case 3: qd = rdi(3,6) # naves
         case 4: qd = rdi(3,3) # Assinatura energética, possíveis conflitos   
-
+        case 5: qd = rdi(1,3) # Assinatura energética, possíveis conflitos   
+        
     for zero in range(qd):
         x_temp = rdu(1,6)
         y_temp = rdu(0,359)       
@@ -60,12 +61,13 @@ while contador_geral <4:
             case 1: # planetas
                 sz_temp = rdu(9,27)
                 variação_cor = rdi(31,41)
-                rgb1 = str((7-x_temp)*variação_cor)
-                rgb3 = str(x_temp*variação_cor)
-                rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
+                rgb1 = (7-x_temp) * variação_cor
+                rgb3 = (x_temp * variação_cor)
+                rgb_temp = 'rgb('+ str(rgb1) + ',0,' + str(rgb3) + ')'
                 tipo_temp = 'Planeta '
+                temperatura_temp = f'{(rgb1 - rgb3) :_.2f}' 
                 if rdi(1,10)>9: texto_temp = '????' 
-                texto.append(tipo_temp + texto_temp)
+                texto.append(tipo_temp + texto_temp + '</br></br>Tméd ' + str(temperatura_temp) + '°C')
                 symbols ='circle' 
                 
             case 2: # estrelas
@@ -89,6 +91,16 @@ while contador_geral <4:
                 tipo_temp = 'Assinatura energética '
                 texto.append(tipo_temp + str(zero+1))
                 symbols ='hexagram'
+
+            case 5: # Buraco Negro
+                sz_temp = rdu(8,8)
+                rgb_temp = 'white'   
+                tipo_temp = 'Buraco Negro '
+                texto.append(tipo_temp + str(zero+1))
+                symbols ='star-square'
+
+
+
                                 
         angulo.append(rdu(0,359))
         x.append(x_temp)
@@ -127,12 +139,9 @@ fig.update_layout(showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_
         radialaxis = dict(color=cor_tema, angle=10, gridcolor=cor_tema, linecolor=cor_tema),
         angularaxis = dict(color=cor_tema, gridcolor=cor_tema)
     )
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  )
+)
+
+
+
+
 fig.show()
