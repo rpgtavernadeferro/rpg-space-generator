@@ -64,6 +64,7 @@ while contador_geral <4:
                 rgb3 = str(x_temp*variação_cor)
                 rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
                 tipo_temp = 'Planeta '
+                if rdi(1,10)>9: texto_temp = '????' 
                 texto.append(tipo_temp + texto_temp)
                 symbols ='circle' 
                 
@@ -78,7 +79,7 @@ while contador_geral <4:
                 rgb_temp = 'rgb(0,'+ str(rdi(100,255)) +',0)'   
                 tipo_temp = 'Nave '
                 classe_temp = rdi(1,12)
-                if rdi(1,5)>3: texto_temp = '????' 
+                if rdi(1,10)>5: texto_temp = '????' 
                 texto.append(tipo_temp + texto_temp + ' (T' + str(classe_temp) + ')')
                 symbols ='arrow' 
                 
