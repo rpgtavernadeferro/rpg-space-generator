@@ -42,10 +42,6 @@ while contador_geral <2:
     rgb = []
     texto = []
 
-
-
-
-
     # define quantidade gerada
     match contador_geral:
         case 1: qd = rdi(5,10) # planetas
@@ -72,15 +68,13 @@ while contador_geral <2:
                 rgb1 = str((7-x_temp)*variação_cor)
                 rgb3 = str(x_temp*variação_cor)
                 rgb_temp = 'rgb(255,255,255)'
-                tipo_temp = ''
-                
+                tipo_temp = ''                
         
         x.append(x_temp)
         y.append(y_temp)
         xy +=[(x_temp+y_temp)]
         rgb.append(rgb_temp)
-        sz.append(sz_temp)
-        
+        sz.append(sz_temp)        
             
         fig.add_trace(go.Scatterpolar(
             r = x,
