@@ -75,13 +75,42 @@ for i in range(qd_pl):
     
          
 
-# cria estrelas
-x_estrela =[]
-y_estrela=[]
-for i in range(100):
+# cria posições aleatórias para naves
+x_nave=[]
+y_nave=[]
+rgb_nave=[]
+sz_nave=[]
+texto_nave=[]
+for i in range(rdi(1,5)):
+    #sorteia coordenada
+    x_temp = rd.uniform(1,6)
+    y_temp = rd.uniform(0,359)
+    # cria um padrão rgb, baseado em azul e vermelho
+    variação_cor = rdi(31,41)
+        #variação de vermelho, quanto mais próximo do sol
+    rgb1_temp = str((7-x_temp)*variação_cor)
+        #variação de azul, quanto mais distante do sol
+    rgb3_temp = str(x_temp*variação_cor)
+        #composição final do rgb
+    rgb_temp = 'rgb(125,125,125)'
+    # variação de tamanho do planeta
+    sz_pl_temp = rd.uniform(5,10)
+    nome_pl_temp = rdpalavra()
     # acrescenta as informações as devidas listas
-    x_estrela.append(rd.uniform(1,6))
-    y_estrela.append(rd.uniform(0,359))
+    x_nave.append(x_temp)
+    y_nave.append(y_temp)
+    rgb_nave.append(rgb_temp)
+    sz_nave.append(sz_pl_temp)
+    texto_nave.append('Nave ' + nome_pl_temp)
+
+
+
+
+
+
+
+
+
 
 # gera o grafico
 contador =0
@@ -124,7 +153,13 @@ if x_lua !=['']:
 
 
 
-
+# cria estrelas
+x_estrela =[]
+y_estrela=[]
+for i in range(100):
+    # acrescenta as informações as devidas listas
+    x_estrela.append(rd.uniform(1,6))
+    y_estrela.append(rd.uniform(0,359))
 
 # adicionar as estrelas
 fig.add_trace(go.Scatterpolar(
@@ -137,9 +172,17 @@ fig.add_trace(go.Scatterpolar(
         marker=dict(size=2, color = 'rgb(255,255,255)')
     ))
 
-
-
-
+# adicionar naves
+fig.add_trace(go.Scatterpolar(
+        r = x_nave,
+        theta = y_nave,
+        text = texto_nave,
+        hoverinfo = 'text',
+        name ='',
+        mode = 'markers',
+        marker=dict(size=sz_nave, color = rgb_nave, symbol="arrow", angle=150)
+    ))
+    
 
 
 #tema
