@@ -81,10 +81,13 @@ y_nave=[]
 rgb_nave=[]
 sz_nave=[]
 texto_nave=[]
+angulo =[]
 for i in range(rdi(1,5)):
     #sorteia coordenada
     x_temp = rd.uniform(1,6)
     y_temp = rd.uniform(0,359)
+    #sorteia angulo das naves
+    angulo_temp = rd.uniform(0,359)
     # cria um padrão rgb, baseado em azul e vermelho
     variação_cor = rdi(31,41)
         #variação de vermelho, quanto mais próximo do sol
@@ -102,6 +105,7 @@ for i in range(rdi(1,5)):
     rgb_nave.append(rgb_temp)
     sz_nave.append(sz_pl_temp)
     texto_nave.append('Nave ' + nome_pl_temp)
+    angulo.append(angulo_temp)
 
 
 
@@ -180,7 +184,7 @@ fig.add_trace(go.Scatterpolar(
         hoverinfo = 'text',
         name ='',
         mode = 'markers',
-        marker=dict(size=sz_nave, color = rgb_nave, symbol="arrow", angle=150)
+        marker=dict(size=sz_nave, color = rgb_nave, symbol="arrow", angle=angulo)
     ))
     
 
