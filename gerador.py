@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 import random as rd
 from random import randint as rdi
 from funções_planeta import *
-##
+###
 # Nomenclaturas
     #qd = quantidade
     #pl =  planetas
@@ -72,9 +72,7 @@ for i in range(qd_pl):
         rgb_lua.append(rgb_lua_temp)
         sz_lua.append(sz_lua_temp)
         texto_lua.append(nome_lua_temp)        
-        
-        
-        
+    
          
 
 # cria estrelas
