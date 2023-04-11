@@ -11,9 +11,6 @@ from funções_planeta import *
     #sz = tamanho
     #temp = temporario
 
-
-
-
 # ajustes inicias
 contador_geral = 0
 
@@ -49,8 +46,8 @@ while contador_geral <6:
         case 2: qd = rdi(100,200) # estrelas
         case 3: qd = rdi(3,6) # naves
         case 4: qd = rdi(3,3) # Assinatura energética, possíveis conflitos   
-        case 5: qd = rdi(1,3) # buraco negro  
-        case 6: qd = rdi(1,3) # Objeto desconhecido      
+        case 5: qd = rdi(0,2)*rdi(0,2) # buraco negro  
+        case 6: qd = rdi(0,2)*rdi(0,2) # Objeto desconhecido      
         
         
     for zero in range(qd):
@@ -69,7 +66,7 @@ while contador_geral <6:
                 tipo_temp = 'Planeta '
                 temperatura_temp = f'{(rgb1 - rgb3) :_.2f}' 
                 if rdi(1,10)>9: texto_temp = '????' 
-                texto.append(tipo_temp + texto_temp + '</br></br>Tméd ' + str(temperatura_temp) + '°C')
+                texto.append(tipo_temp + texto_temp + '<br><br>Tméd ' + str(temperatura_temp) + '°C')
                 symbols ='circle'
                     
             case 2: # estrelas
@@ -100,7 +97,7 @@ while contador_geral <6:
                 tipo_temp = 'Buraco Negro '
                 texto.append(tipo_temp + str(zero+1))
                 symbols ='star-square'
-                contorno_simbolo = 2
+                contorno_simbolo = 1
 
             case 6: # Objeto desconhecido
                 sz_temp = rdu(8,8)
@@ -124,9 +121,7 @@ while contador_geral <6:
             xy +=[(x_temp+0.01,y_temp+0.01)]
             rgb.append('rgb(125,125,125)')
             sz.append(int(sz_temp/2))
-            texto.append('Lua ' + rdpalavra() + ' do Planeta ' + texto_temp)           
-
-
+            texto.append('Lua ' + rdpalavra() + ' do Planeta ' + texto_temp)     
 
 
         fig.add_trace(go.Scatterpolar(
