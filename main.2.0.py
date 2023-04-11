@@ -41,6 +41,7 @@ while contador_geral <3:
     sz = []
     rgb = []
     texto = []
+    angulo=[]
 
     # define quantidade gerada
     match contador_geral:
@@ -52,6 +53,7 @@ while contador_geral <3:
         x_temp = rdu(1,6)
         y_temp = rdu(0,359)       
         texto_temp = rdpalavra()
+         
         
         match contador_geral:
             case 1: # planetas
@@ -69,12 +71,12 @@ while contador_geral <3:
                 tipo_temp = ''
                 symbols ='circle'                
             case 3: # naves
-                sz_temp = rdu(3,6)
-                rgb_temp = 'rgb(125,125,125)'   
+                sz_temp = rdu(12,12)
+                rgb_temp = 'rgb(0,'+ str(rdi(100,255)) +',0)'   
                 tipo_temp = 'Nave '
                 texto.append(tipo_temp + texto_temp)
                 symbols ='arrow' 
-        
+        angulo.append(rdu(0,359))
         x.append(x_temp)
         y.append(y_temp)
         xy +=[(x_temp+y_temp)]
@@ -88,7 +90,7 @@ while contador_geral <3:
             hoverinfo = 'text',
             name ='',
             mode = 'markers',
-            marker=dict(size=sz, color = rgb, symbol=symbols)
+            marker=dict(size=sz, color = rgb, symbol=symbols, line=dict(width=0),angle=angulo)
         ))            
     
     
