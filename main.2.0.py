@@ -1,3 +1,4 @@
+from ast import Match
 import plotly.graph_objects as go
 import random as rd
 from random import randint as rdi # inteiros
@@ -40,27 +41,41 @@ while contador_geral <1:
     contador_geral +=1
 
     # define quantidade gerada
-    Match contador_geral:
+    match contador_geral:
         case 1: qd = rdi(5,10) # planetas
         case 2: qd = rdi(100,200) # estrelas
         case 3: qd = rdi(5,10) # naves       
 
     for i in range(qd):
         x_temp = rdu(1,6)
-        y_temp = rdu(0,359)
-        sz_temp = rdu(9,27)
-        
-        if contador_geral == 1: #planetas
+        y_temp = rdu(0,359)       
+
+    match contador_geral:
+        case 1: # planetas
+            sz_temp = rdu(9,27)
             variação_cor = rdi(31,41)
             rgb1 = str((7-x_temp)*variação_cor)
             rgb3 = str(x_temp*variação_cor)
             rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
             tipo_temp = 'Planeta '
+        case 2: # estrelas
+            sz_temp = rdu(9,27)
+            variação_cor = rdi(31,41)
+            rgb1 = str((7-x_temp)*variação_cor)
+            rgb3 = str(x_temp*variação_cor)
+            rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
+            tipo_temp = 'Planeta '            
+        case 3: # naves 
+
+
+
+        
+
             
         texto_temp = rdpalavra()
         x.append(x_temp)
         y.append(y_temp)
-        xy.append(x_temp+y_temp)
+        xy +=[(x_temp+y_temp)]
         rgb.append(rgb_temp)
         sz.append(sz_temp)
         texto.append(tipo_temp  + texto_temp)
