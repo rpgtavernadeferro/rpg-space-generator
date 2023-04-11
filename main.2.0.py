@@ -31,7 +31,7 @@ fig = go.Figure(data=
     ))
 
 #criação do grafico
-while contador_geral <2:
+while contador_geral <3:
     contador_geral +=1
 
     # criando listas gerais
@@ -46,7 +46,7 @@ while contador_geral <2:
     match contador_geral:
         case 1: qd = rdi(5,10) # planetas
         case 2: qd = rdi(100,200) # estrelas
-        case 3: qd = rdi(5,10) # naves       
+        case 3: qd = rdi(3,6) # naves       
 
     for i in range(qd):
         x_temp = rdu(1,6)
@@ -62,13 +62,18 @@ while contador_geral <2:
                 rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
                 tipo_temp = 'Planeta '
                 texto.append(tipo_temp + texto_temp)
+                symbols ='circle' 
             case 2: # estrelas
-                sz_temp = rdu(1,1)
-                variação_cor = rdi(31,41)
-                rgb1 = str((7-x_temp)*variação_cor)
-                rgb3 = str(x_temp*variação_cor)
+                sz_temp = rdu(2,2)
                 rgb_temp = 'rgb(255,255,255)'
-                tipo_temp = ''                
+                tipo_temp = ''
+                symbols ='circle'                
+            case 3: # naves
+                sz_temp = rdu(3,6)
+                rgb_temp = 'rgb(125,125,125)'   
+                tipo_temp = 'Nave '
+                texto.append(tipo_temp + texto_temp)
+                symbols ='arrow' 
         
         x.append(x_temp)
         y.append(y_temp)
@@ -83,7 +88,7 @@ while contador_geral <2:
             hoverinfo = 'text',
             name ='',
             mode = 'markers',
-            marker=dict(size=sz, color = rgb)
+            marker=dict(size=sz, color = rgb, symbol=symbols)
         ))            
     
     
