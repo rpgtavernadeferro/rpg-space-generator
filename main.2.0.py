@@ -60,6 +60,7 @@ while contador_geral <1:
         texto_temp = rdpalavra()
         x.append(x_temp)
         y.append(y_temp)
+        xy.append(x_temp+y_temp)
         rgb.append(rgb_temp)
         sz.append(sz_temp)
         texto.append(tipo_temp  + texto_temp)
