@@ -12,13 +12,7 @@ from funções_planeta import *
     #temp = temporario
 
 
-# criando listas gerais
-x = []
-y = []
-xy = []
-sz = []
-rgb = []
-texto = []
+
 
 # ajustes inicias
 contador_geral = 0
@@ -37,8 +31,20 @@ fig = go.Figure(data=
     ))
 
 #criação do grafico
-while contador_geral <1:
+while contador_geral <2:
     contador_geral +=1
+
+    # criando listas gerais
+    x = []
+    y = []
+    xy = []
+    sz = []
+    rgb = []
+    texto = []
+
+
+
+
 
     # define quantidade gerada
     match contador_geral:
@@ -49,46 +55,42 @@ while contador_geral <1:
     for i in range(qd):
         x_temp = rdu(1,6)
         y_temp = rdu(0,359)       
-
-    match contador_geral:
-        case 1: # planetas
-            sz_temp = rdu(9,27)
-            variação_cor = rdi(31,41)
-            rgb1 = str((7-x_temp)*variação_cor)
-            rgb3 = str(x_temp*variação_cor)
-            rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
-            tipo_temp = 'Planeta '
-        case 2: # estrelas
-            sz_temp = rdu(9,27)
-            variação_cor = rdi(31,41)
-            rgb1 = str((7-x_temp)*variação_cor)
-            rgb3 = str(x_temp*variação_cor)
-            rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
-            tipo_temp = 'Planeta '            
-        case 3: # naves 
-
-
-
-        
-
-            
         texto_temp = rdpalavra()
+        
+        match contador_geral:
+            case 1: # planetas
+                sz_temp = rdu(9,27)
+                variação_cor = rdi(31,41)
+                rgb1 = str((7-x_temp)*variação_cor)
+                rgb3 = str(x_temp*variação_cor)
+                rgb_temp = 'rgb('+rgb1+',0,'+rgb3+')'
+                tipo_temp = 'Planeta '
+                texto.append(tipo_temp + texto_temp)
+            case 2: # estrelas
+                sz_temp = rdu(1,1)
+                variação_cor = rdi(31,41)
+                rgb1 = str((7-x_temp)*variação_cor)
+                rgb3 = str(x_temp*variação_cor)
+                rgb_temp = 'rgb(255,255,255)'
+                tipo_temp = ''
+                
+        
         x.append(x_temp)
         y.append(y_temp)
         xy +=[(x_temp+y_temp)]
         rgb.append(rgb_temp)
         sz.append(sz_temp)
-        texto.append(tipo_temp  + texto_temp)
         
-    fig.add_trace(go.Scatterpolar(
-        r = x,
-        theta = y,
-        text = texto,
-        hoverinfo = 'text',
-        name ='',
-        mode = 'markers',
-        marker=dict(size=sz, color = rgb)
-    ))            
+            
+        fig.add_trace(go.Scatterpolar(
+            r = x,
+            theta = y,
+            text = texto,
+            hoverinfo = 'text',
+            name ='',
+            mode = 'markers',
+            marker=dict(size=sz, color = rgb)
+        ))            
     
     
 
