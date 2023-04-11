@@ -42,7 +42,12 @@ while contador_geral <5:
     rgb = []
     texto = []
     angulo=[]
-
+    x_lua = []
+    y_lua = []
+    texto_lua = []                    
+    rgb_lua = []
+    sz_lua = []
+    
     # define quantidade gerada
     match contador_geral:
         case 1: qd = rdi(5,10) # planetas
@@ -68,8 +73,28 @@ while contador_geral <5:
                 temperatura_temp = f'{(rgb1 - rgb3) :_.2f}' 
                 if rdi(1,10)>9: texto_temp = '????' 
                 texto.append(tipo_temp + texto_temp + '</br></br>Tméd ' + str(temperatura_temp) + '°C')
-                symbols ='circle' 
+                symbols ='circle'
                 
+                # criando lua
+                if rdi(1,10)>7:
+                    sz_temp_lua = int(sz_temp/2)
+                    variação_cor_lua = rdi(31,41)
+                    rgb1_lua = (7-x_temp) * variação_cor_lua
+                    rgb3_lua = (x_temp * variação_cor_lua)
+                    rgb_temp_lua ='rgb(125,125,125)'
+                    tipo_temp_lua = 'Lua '
+                    qual_planeta = ' do Planeta ' + texto_temp
+                    temperatura_temp_lua = f'{(rgb1_lua - rgb3_lua) :_.2f}'
+                    texto_temp_lua = rdpalavra() 
+                    if rdi(1,10)>9: texto_temp_lua = '????' 
+                    texto_lua.append(tipo_temp_lua + texto_temp_lua + qual_planeta + '</br></br>Tméd ' + str(temperatura_temp_lua) + '°C')
+                    symbols ='circle'
+                                        
+                    rgb_lua.append(rgb_temp_lua)
+                    sz_lua.append(sz_temp_lua) 
+                    x_lua.append(x_temp+0.01)
+                    y_lua.append(y_temp+0.01)
+                    
             case 2: # estrelas
                 sz_temp = rdu(2,2)
                 rgb_temp = 'rgb(255,255,255)'
@@ -98,10 +123,7 @@ while contador_geral <5:
                 tipo_temp = 'Buraco Negro '
                 texto.append(tipo_temp + str(zero+1))
                 symbols ='star-square'
-
-
-
-                                
+                                            
         angulo.append(rdu(0,359))
         x.append(x_temp)
         y.append(y_temp)
@@ -118,8 +140,19 @@ while contador_geral <5:
             mode = 'markers',
             marker=dict(size=sz, color = rgb, symbol=symbols, line=dict(width=0),angle=angulo)
         ))            
-    
-    
+
+        if x_lua != ['']:
+            fig.add_trace(go.Scatterpolar(
+                r = x_lua,
+                theta = y_lua,
+                text = texto_lua,
+                hoverinfo = 'text',
+                name ='',
+                mode = 'markers',
+                marker=dict(size=sz_lua, color = rgb_lua, symbol=symbols, line=dict(width=0),angle=angulo)
+            ))        
+            
+            
 
 
 
