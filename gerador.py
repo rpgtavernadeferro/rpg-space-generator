@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 import random as rd
 from random import randint as rdi
 from funções_planeta import *
-
+#
 # Nomenclaturas
     #qd = quantidade
     #pl =  planetas
