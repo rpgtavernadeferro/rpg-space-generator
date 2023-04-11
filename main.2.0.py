@@ -16,7 +16,6 @@ from funções_planeta import *
 
 # ajustes inicias
 contador_geral = 0
-contador_atual = 0
 
 # Cria o Sol
 fig = go.Figure(data=
@@ -31,8 +30,9 @@ fig = go.Figure(data=
     ))
 
 #criação do grafico
-while contador_geral <5:
+while contador_geral <6:
     contador_geral +=1
+    contorno_simbolo = 0
 
     # criando listas gerais
     x = []
@@ -42,11 +42,6 @@ while contador_geral <5:
     rgb = []
     texto = []
     angulo=[]
-    x_lua = []
-    y_lua = []
-    texto_lua = []                    
-    rgb_lua = []
-    sz_lua = []
     
     # define quantidade gerada
     match contador_geral:
@@ -54,7 +49,9 @@ while contador_geral <5:
         case 2: qd = rdi(100,200) # estrelas
         case 3: qd = rdi(3,6) # naves
         case 4: qd = rdi(3,3) # Assinatura energética, possíveis conflitos   
-        case 5: qd = rdi(1,3) # Assinatura energética, possíveis conflitos   
+        case 5: qd = rdi(1,3) # buraco negro  
+        case 6: qd = rdi(1,3) # Objeto desconhecido      
+        
         
     for zero in range(qd):
         x_temp = rdu(1,6)
@@ -74,26 +71,6 @@ while contador_geral <5:
                 if rdi(1,10)>9: texto_temp = '????' 
                 texto.append(tipo_temp + texto_temp + '</br></br>Tméd ' + str(temperatura_temp) + '°C')
                 symbols ='circle'
-                
-                # criando lua
-                if rdi(1,10)>7:
-                    sz_temp_lua = int(sz_temp/2)
-                    variação_cor_lua = rdi(31,41)
-                    rgb1_lua = (7-x_temp) * variação_cor_lua
-                    rgb3_lua = (x_temp * variação_cor_lua)
-                    rgb_temp_lua ='rgb(125,125,125)'
-                    tipo_temp_lua = 'Lua '
-                    qual_planeta = ' do Planeta ' + texto_temp
-                    temperatura_temp_lua = f'{(rgb1_lua - rgb3_lua) :_.2f}'
-                    texto_temp_lua = rdpalavra() 
-                    if rdi(1,10)>9: texto_temp_lua = '????' 
-                    texto_lua.append(tipo_temp_lua + texto_temp_lua + qual_planeta + '</br></br>Tméd ' + str(temperatura_temp_lua) + '°C')
-                    symbols ='circle'
-                                        
-                    rgb_lua.append(rgb_temp_lua)
-                    sz_lua.append(sz_temp_lua) 
-                    x_lua.append(x_temp+0.01)
-                    y_lua.append(y_temp+0.01)
                     
             case 2: # estrelas
                 sz_temp = rdu(2,2)
@@ -119,18 +96,39 @@ while contador_geral <5:
 
             case 5: # Buraco Negro
                 sz_temp = rdu(8,8)
-                rgb_temp = 'white'   
+                rgb_temp = 'black'   
                 tipo_temp = 'Buraco Negro '
                 texto.append(tipo_temp + str(zero+1))
                 symbols ='star-square'
+                contorno_simbolo = 2
+
+            case 6: # Objeto desconhecido
+                sz_temp = rdu(8,8)
+                rgb_temp = 	'rgb(255,155,0)'   
+                tipo_temp = 'Objeto Desconhecido '
+                texto.append(tipo_temp + str(zero+1))
+                symbols ='x'
                                             
         angulo.append(rdu(0,359))
         x.append(x_temp)
         y.append(y_temp)
-        xy +=[(x_temp+y_temp)]
+        xy +=[(x_temp,y_temp)]
         rgb.append(rgb_temp)
-        sz.append(sz_temp)        
-            
+        sz.append(sz_temp)
+        
+        # criando lua
+        if rdi(1,10) > 7 and contador_geral == 1:
+            angulo.append(rdu(0,359))
+            x.append(x_temp+0.01)
+            y.append(y_temp+0.01)
+            xy +=[(x_temp+0.01,y_temp+0.01)]
+            rgb.append('rgb(125,125,125)')
+            sz.append(int(sz_temp/2))
+            texto.append('Lua ' + rdpalavra() + ' do Planeta ' + texto_temp)           
+
+
+
+
         fig.add_trace(go.Scatterpolar(
             r = x,
             theta = y,
@@ -138,19 +136,10 @@ while contador_geral <5:
             hoverinfo = 'text',
             name ='',
             mode = 'markers',
-            marker=dict(size=sz, color = rgb, symbol=symbols, line=dict(width=0),angle=angulo)
+            marker=dict(size=sz, color = rgb, symbol=symbols, line=dict(width=contorno_simbolo),angle=angulo)
         ))            
 
-        if x_lua != ['']:
-            fig.add_trace(go.Scatterpolar(
-                r = x_lua,
-                theta = y_lua,
-                text = texto_lua,
-                hoverinfo = 'text',
-                name ='',
-                mode = 'markers',
-                marker=dict(size=sz_lua, color = rgb_lua, symbol=symbols, line=dict(width=0),angle=angulo)
-            ))        
+
             
             
 
