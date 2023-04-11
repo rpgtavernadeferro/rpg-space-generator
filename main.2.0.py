@@ -4,7 +4,8 @@ import random as rd
 from random import randint as rdi # inteiros
 from random import uniform as rdu # fracionarios
 from funções_planeta import *
-###
+from dash import Dash, html, dash_table, dcc, callback, Output, Input
+
 # Nomenclaturas
     #qd = quantidade
     #pl =  planetas
@@ -123,7 +124,6 @@ while contador_geral <6:
             sz.append(int(sz_temp/2))
             texto.append('Lua ' + rdpalavra() + ' do Planeta ' + texto_temp)     
 
-
         fig.add_trace(go.Scatterpolar(
             r = x,
             theta = y,
@@ -135,20 +135,10 @@ while contador_geral <6:
         ))            
 
 
-            
-            
-
-
-
-
-
-
-
-
 
 
 #tema
-cor_tema = 'rgb(127, 255, 212)' #azul claro
+cor_tema = 'rgb(204, 255, 51)'
 cor_tema2 = 'black'
 # mostra o grafico
 fig.update_layout(showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
