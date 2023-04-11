@@ -144,8 +144,9 @@ fig.add_trace(go.Scatterpolar(
 
 #tema
 cor_tema = 'rgb(127, 255, 212)' #azul claro
+cor_tema2 = 'black'
 # mostra o grafico
-fig.update_layout(showlegend=False, polar_bgcolor='black', paper_bgcolor='black', 
+fig.update_layout(showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
                   polar = dict(
         radialaxis = dict(color=cor_tema, angle=10, gridcolor=cor_tema, linecolor=cor_tema),
         angularaxis = dict(color=cor_tema, gridcolor=cor_tema)
