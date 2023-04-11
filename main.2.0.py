@@ -38,8 +38,14 @@ fig = go.Figure(data=
 #criação do grafico
 while contador_geral <1:
     contador_geral +=1
-    
-    for i in range(rdi(5,10)):
+
+    # define quantidade gerada
+    Match contador_geral:
+        case 1: qd = rdi(5,10) # planetas
+        case 2: qd = rdi(100,200) # estrelas
+        case 3: qd = rdi(5,10) # naves       
+
+    for i in range(qd):
         x_temp = rdu(1,6)
         y_temp = rdu(0,359)
         sz_temp = rdu(9,27)
