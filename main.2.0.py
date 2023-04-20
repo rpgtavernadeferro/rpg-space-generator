@@ -78,10 +78,17 @@ while contador_geral <6:
                 habitantes = rd_habitantes (hidrografia,tecnologia)                
                 temperatura_texto = '<br><br>T ' + str(tmin) + ' | ' + str(tmed) + ' | ' + str(tmax) + ' °C'
                 elemento_texto = '<br>' + divisor_text(elementos,30)
-                hidrografia_texto = '<br><br>Hidrografia: ' + str(hidrografia) + '%'
-                habitantes_texto = '<br><br>Densidade: ' + str(habitantes) + ' hab/km²'
-                tecnologia_texto = tecnologia 
-                texto.append(tipo_temp + texto_temp + temperatura_texto + elemento_texto + hidrografia_texto + habitantes_texto)
+                if hidrografia > 0:
+                    hidrografia_texto = '<br>Hidrografia: ' + str(hidrografia) + '%'
+                else:
+                    hidrografia_texto = ''                    
+                if habitantes > 0:
+                    tecnologia_texto = '<br>' + divisor_text(tecnologia,30)
+                    habitantes_texto = '<br><br>Densidade: ' + str(habitantes) + ' hab/km²'
+                else:
+                    tecnologia_texto = ''
+                    habitantes_texto = ''
+                texto.append(tipo_temp + texto_temp + temperatura_texto + elemento_texto + hidrografia_texto + habitantes_texto + tecnologia_texto)
                 symbols ='circle'
                 contorno_simbolo = 0.5
                     
