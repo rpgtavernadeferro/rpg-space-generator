@@ -163,7 +163,7 @@ while contador_geral <6:
 cor_tema = 'rgb(204, 255, 51)'
 cor_tema2 = 'black'
 # mostra o grafico
-fig.update_layout(showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
+fig.update_layout(title = nome_sistema,showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
                   polar = dict(
         radialaxis = dict(color=cor_tema, angle=10, gridcolor=cor_tema, linecolor=cor_tema),
         angularaxis = dict(color=cor_tema, gridcolor=cor_tema)
