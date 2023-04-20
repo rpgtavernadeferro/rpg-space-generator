@@ -69,7 +69,7 @@ def rd_elementos(tmin=0,tmed=20,tmax=30):
         porcentagem = random.randint(1,100-porcentagem_total) 
         porcentagem_total += porcentagem
         aleatorio = random.randint(1,50) 
-        if (aleatorio<=20) or (lista_elementos_basicos ==''):       
+        if (aleatorio<=30) or (lista_elementos_basicos ==''):       
             elementos = rdlistcls(lista_elementos)
         elif aleatorio==50:
             elementos = 'Desconhecido(?).'+str(random.randint(-299,6000))
@@ -299,4 +299,12 @@ def rd_espaço(diretorio_imagem,extensão_imagem):
     with open(texto_imagem, 'rb') as f:
         picture = discord.File(f)
     return picture
+
+
+
+
+
+
+
+
 

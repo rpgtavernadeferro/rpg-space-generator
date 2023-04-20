@@ -24,6 +24,22 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 
+def divisor_text(text,limite=10):
+    texto_final =''
+    quantidade_caracteres = limite
+    tamanho = len(text)
+    partes = []
+    if len(text) > quantidade_caracteres:                
+        for i in range(0, len(text), quantidade_caracteres):
+            texto_final += '<br>' + text[i:i+quantidade_caracteres]
+    return texto_final
+
+
+
+
+
+
+
 def ext_n(texto):
     #extrai numeros de um texto
     return re.sub('[^0-9]', '', texto)

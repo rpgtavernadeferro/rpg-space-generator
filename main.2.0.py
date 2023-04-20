@@ -15,6 +15,9 @@ from dash import Dash, html, dash_table, dcc, callback, Output, Input
 # ajustes inicias
 contador_geral = 0
 
+# nome do sistema solar
+nome_sistema = 'Sistema Solar ' + rdpalavra()
+
 # Cria o Sol
 fig = go.Figure(data=
     go.Scatterpolar(
@@ -65,10 +68,22 @@ while contador_geral <6:
                 rgb3 = (x_temp * variação_cor)
                 rgb_temp = 'rgb('+ str(rgb1) + ',0,' + str(rgb3) + ')'
                 tipo_temp = 'Planeta '
-                temperatura_temp = f'{(rgb1 - rgb3) :_.2f}' 
-                if rdi(1,10)>9: texto_temp = '????' 
-                texto.append(tipo_temp + texto_temp + '<br><br>Tméd ' + str(temperatura_temp) + '°C')
+                tmed = int(float(f'{(rgb1 - rgb3) :_.2f}'))
+                tmin = tmed - rdi(1,100)
+                tmax = tmed + rdi(1,100)
+                if rdi(1,10)>9: texto_temp = '????'
+                elementos = rd_elementos(tmin,tmed,tmax)
+                tecnologia = rd_nivel_tecnologico()
+                hidrografia = rd_hidrografia(elementos)
+                habitantes = rd_habitantes (hidrografia,tecnologia)                
+                temperatura_texto = '<br><br>T ' + str(tmin) + ' | ' + str(tmed) + ' | ' + str(tmax) + ' °C'
+                elemento_texto = '<br>' + divisor_text(elementos,30)
+                hidrografia_texto = '<br><br>Hidrografia: ' + str(hidrografia) + '%'
+                habitantes_texto = '<br><br>Densidade: ' + str(habitantes) + ' hab/km²'
+                tecnologia_texto = tecnologia 
+                texto.append(tipo_temp + texto_temp + temperatura_texto + elemento_texto + hidrografia_texto + habitantes_texto)
                 symbols ='circle'
+                contorno_simbolo = 0.5
                     
             case 2: # estrelas
                 sz_temp = rdu(2,2)
@@ -152,3 +167,6 @@ fig.update_layout(showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_
 
 
 fig.show()
+
+nome_do_arquivo = nome_sistema + '.html'
+fig.write_html('sistema_solar/'+nome_do_arquivo)
