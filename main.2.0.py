@@ -31,9 +31,11 @@ fig = go.Figure(data=
     ))
 
 #criação do grafico
-while contador_geral <6:
+sistema_solar_habitado ='n'
+while contador_geral <8:
     contador_geral +=1
     contorno_simbolo = 0
+    
 
     # criando listas gerais
     x = []
@@ -48,11 +50,17 @@ while contador_geral <6:
     match contador_geral:
         case 1: qd = rdi(5,10) # planetas
         case 2: qd = rdi(100,200) # estrelas
-        case 3: qd = rdi(3,6) # naves
-        case 4: qd = rdi(3,3) # Assinatura energética, possíveis conflitos   
-        case 5: qd = rdi(0,2)*rdi(0,2) # buraco negro  
+        case 3:
+            #verifica se é um sistema propicio a ter naves
+            if sistema_solar_habitado == 's':
+                qd = rdi(3,12) # naves
+            else:
+                qd = rdi(0,1)*rdi(0,1)*rdi(0,1) # naves
+        case 4: qd = rdi(1,4)*rdi(0,1) # Assinatura energética, possíveis conflitos   
+        case 5: qd = rdi(0,1)*rdi(0,1) # buraco negro  
         case 6: qd = rdi(0,2)*rdi(0,2) # Objeto desconhecido      
-        
+        case 7: qd = rdi(0,1)*rdi(0,1)*rdi(0,1) # Supernova
+        case 8: qd = rdi(0,1)*rdi(0,1)*rdi(0,1) # Pulsar         
         
     for zero in range(qd):
         x_temp = rdu(1,4)
@@ -85,6 +93,7 @@ while contador_geral <6:
                 if habitantes > 0:
                     tecnologia_texto = '<br>' + divisor_text(tecnologia,30)
                     habitantes_texto = '<br><br>Densidade: ' + str(habitantes) + ' hab/km²'
+                    sistema_solar_habitado ='s'
                 else:
                     tecnologia_texto = ''
                     habitantes_texto = ''
@@ -100,7 +109,7 @@ while contador_geral <6:
                              
             case 3: # naves
                 sz_temp = rdu(12,12)
-                rgb_temp = 'rgb(0,'+ str(rdi(100,255)) +',0)'   
+                rgb_temp = 'rgb(0,'+ str(rdi(50,255)) +',0)'   
                 tipo_temp = 'Nave '
                 classe_temp = rdi(1,12)
                 if rdi(1,10)>5: texto_temp = '????' 
@@ -128,6 +137,23 @@ while contador_geral <6:
                 tipo_temp = 'Objeto Desconhecido '
                 texto.append(tipo_temp + str(zero+1))
                 symbols ='x'
+
+            case 7: # Supernova
+                sz_temp = rdu(10,10)
+                rgb_temp = 	'lightskyblue'
+                tipo_temp = 'Supernova '
+                texto.append(tipo_temp + str(zero+1))
+                symbols ='star-triangle-up'
+                contorno_simbolo = 1
+
+            case 8: # Pulsar
+                sz_temp = rdu(10,10)
+                rgb_temp = 	'lightskyblue'   
+                tipo_temp = 'Pulsar '
+                texto.append(tipo_temp + str(zero+1))
+                symbols ='bowtie'
+                contorno_simbolo = 1
+
                                             
         angulo.append(rdu(0,359))
         x.append(x_temp)
@@ -161,7 +187,8 @@ cor_tema = 'rgb(204, 255, 51)'
 cor_tema2 = 'black'
 # mostra o grafico
 fig.update_layout(title = nome_sistema,title_font =dict(color=cor_tema),
-                  showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
+                  showlegend=False,
+                  polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
                   polar = dict(
         radialaxis = dict(color=cor_tema, angle=10, gridcolor=cor_tema, linecolor=cor_tema),
         angularaxis = dict(color=cor_tema, gridcolor=cor_tema)
