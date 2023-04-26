@@ -196,7 +196,32 @@ fig.update_layout(title = nome_sistema,title_font =dict(color=cor_tema),
     dragmode=False #remove zoom 
 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 fig.show()
 
 nome_do_arquivo = nome_sistema + '.html'
 fig.write_html('sistema_solar/'+nome_do_arquivo)
+
+
+
+
+
