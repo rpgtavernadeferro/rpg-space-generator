@@ -156,26 +156,18 @@ while contador_geral <6:
             marker=dict(size=sz, color = rgb, symbol=symbols, line=dict(width=contorno_simbolo),angle=angulo)
         ))            
 
-
-
-
 #tema
 cor_tema = 'rgb(204, 255, 51)'
 cor_tema2 = 'black'
 # mostra o grafico
 fig.update_layout(title = nome_sistema,title_font =dict(color=cor_tema),
-                  
-                  
-                  
                   showlegend=False, polar_bgcolor=cor_tema2 , paper_bgcolor=cor_tema2 , 
                   polar = dict(
         radialaxis = dict(color=cor_tema, angle=10, gridcolor=cor_tema, linecolor=cor_tema),
         angularaxis = dict(color=cor_tema, gridcolor=cor_tema)
-    )
+    ),
+    dragmode=False #remove zoom 
 )
-
-
-
 
 fig.show()
 
