@@ -55,7 +55,7 @@ while contador_geral <8:
             if sistema_solar_habitado == 's':
                 qd = rdi(3,12) # naves
             else:
-                qd = rdi(0,1)*rdi(0,1)*rdi(0,1) # naves
+                qd = rdi(0,1)*rdi(0,1)*rdi(0,4) # naves
         case 4: qd = rdi(1,4)*rdi(0,1) # Assinatura energética, possíveis conflitos   
         case 5: qd = rdi(0,1)*rdi(0,1) # buraco negro  
         case 6: qd = rdi(0,2)*rdi(0,2) # Objeto desconhecido      
